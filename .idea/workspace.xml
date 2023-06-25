@@ -4,24 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8d77b796-3cf5-495d-93ce-c52c97f548b5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hangman.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/CommonConstants.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Hangman.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/7.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/Cartoonero.ttf" afterDir="false" />
+    <list default="true" id="8d77b796-3cf5-495d-93ce-c52c97f548b5" name="Changes" comment="JFrame Window">
+      <change afterPath="$PROJECT_DIR$/src/WordDB.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/data.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CommonConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CommonConstants.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,11 +72,23 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1687683437473</updated>
-      <workItem from="1687683438508" duration="1453000" />
+      <workItem from="1687683438508" duration="2551000" />
     </task>
+    <task id="LOCAL-00001" summary="JFrame Window">
+      <created>1687684928414</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1687684928414</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="JFrame Window" />
+    <option name="LAST_COMMIT_MESSAGE" value="JFrame Window" />
   </component>
 </project>

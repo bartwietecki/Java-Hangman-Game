@@ -1,0 +1,4 @@
+animals,Lion,Zebra,Elephant,Bird,Tiger,Panda,Komodo,Butterfly
+sports,Basketball,Football,Badminton,Volleyball,Golf,Boxing
+fruits,Banana,Orange,Apple,Strawberry,Mango,Tomato,Pineapple
+states, Utah,Texas,California,Alabama,Colorado,Wyoming,Florida
