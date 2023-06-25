@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class Hangman extends JFrame implements ActionListener {
     // counts the number of incorrect guesses player has made
@@ -11,8 +13,10 @@ public class Hangman extends JFrame implements ActionListener {
     private String[] wordChallenge;
 
     private final WordDB wordDB;
-    private JLabel hangmanImage, categoryLabel, hiddenWordLabel;
+    private JLabel hangmanImage, categoryLabel, hiddenWordLabel, resultLabel, wordLabel;
     private JButton[] letterButtons;
+    private JDialog resultDialog;
+    private Font customFont;
 
 
     public Hangman() {
@@ -28,6 +32,8 @@ public class Hangman extends JFrame implements ActionListener {
         wordDB = new WordDB();
         letterButtons = new JButton[26];
         wordChallenge = wordDB.loadChallenge();
+        customFont = CustomTools.createFont(CommonConstants.FONT_PATH);
+        createResultDialog();
 
 
         addGuiComponents();
@@ -40,6 +46,7 @@ public class Hangman extends JFrame implements ActionListener {
 
         // category display
         categoryLabel = new JLabel(wordChallenge[0]);
+        categoryLabel.setFont(customFont.deriveFont(30f));
         categoryLabel.setHorizontalAlignment(SwingConstants.CENTER);
         categoryLabel.setOpaque(true);
         categoryLabel.setForeground(Color.WHITE);
@@ -54,6 +61,7 @@ public class Hangman extends JFrame implements ActionListener {
 
         // hidden word
         hiddenWordLabel = new JLabel(CustomTools.hiddenWords(wordChallenge[1]));
+        hiddenWordLabel.setFont(customFont.deriveFont(64f));
         hiddenWordLabel.setForeground(Color.WHITE);
         hiddenWordLabel.setHorizontalAlignment(SwingConstants.CENTER);
         hiddenWordLabel.setBounds(
@@ -78,6 +86,7 @@ public class Hangman extends JFrame implements ActionListener {
         for (char c = 'A'; c <= 'Z'; c++) {
             JButton button = new JButton(Character.toString(c));
             button.setBackground(CommonConstants.PRIMARY_COLOR);
+            button.setFont(customFont.deriveFont(22f));
             button.setForeground(Color.WHITE);
             button.addActionListener(this);
 
@@ -90,6 +99,7 @@ public class Hangman extends JFrame implements ActionListener {
 
         // reset button
         JButton resetButton = new JButton("Reset");
+        resetButton.setFont(customFont.deriveFont(22f));
         resetButton.setForeground(Color.WHITE);
         resetButton.setBackground(CommonConstants.SECONDARY_COLOR);
         resetButton.addActionListener(this);
@@ -97,6 +107,7 @@ public class Hangman extends JFrame implements ActionListener {
 
         // quit button
         JButton quitButton = new JButton("Quit");
+        quitButton.setFont(customFont.deriveFont(22f));
         quitButton.setForeground(Color.WHITE);
         quitButton.setBackground(CommonConstants.SECONDARY_COLOR);
         quitButton.addActionListener(this);
@@ -111,8 +122,12 @@ public class Hangman extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
-        if(command.equals("Reset")) {
-            restartGame();
+        if (command.equals("Reset") || command.equals("Restart")) {
+            resetGame();
+
+            if (command.equals("Restart")) {
+                resultDialog.setVisible(false);
+            }
         } else if (command.equals("Quit")) {
             dispose();
             return;
@@ -142,6 +157,11 @@ public class Hangman extends JFrame implements ActionListener {
                 hiddenWordLabel.setText(String.valueOf(hiddenWord));
 
                 // the user guessed the word right
+                if (!hiddenWordLabel.getText().contains("*")) {
+                    // display dialog with success result
+                    resultLabel.setText("You got it right!");
+                    resultDialog.setVisible(true);
+                }
 
             } else {
                 // indicate that the user chose the wrong letter
@@ -154,12 +174,52 @@ public class Hangman extends JFrame implements ActionListener {
                 CustomTools.updateImage(hangmanImage, "resources/" + (incorrectGuesses + 1) + ".png");
 
                 // user failed to guess word right
+                if (incorrectGuesses >= 6) {
+                    // display result dialog with game over label
+                    resultLabel.setText("Too Bad, Try Again?");
+                    resultDialog.setVisible(true);
+                }
             }
+            wordLabel.setText("Word: " + wordChallenge[1]);
         }
 
     }
 
-    private void restartGame() {
+    private void createResultDialog() {
+        resultDialog = new JDialog();
+        resultDialog.setTitle("Result");
+        resultDialog.setSize(CommonConstants.RESULT_DIALOG_SIZE);
+        resultDialog.getContentPane().setBackground(CommonConstants.BACKGROUND_COLOR);
+        resultDialog.setResizable(false);
+        resultDialog.setLocationRelativeTo(this);
+        resultDialog.setModal(true);
+        resultDialog.setLayout(new GridLayout(3, 1));
+        resultDialog.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowOpened(WindowEvent e) {
+                resetGame();
+            }
+        });
+
+        resultLabel = new JLabel();
+        resultLabel.setForeground(Color.WHITE);
+        resultLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
+        wordLabel = new JLabel();
+        wordLabel.setForeground(Color.WHITE);
+        wordLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
+        JButton restartButton = new JButton("Restart");
+        restartButton.setForeground(Color.WHITE);
+        restartButton.setBackground(CommonConstants.SECONDARY_COLOR);
+        restartButton.addActionListener(this);
+
+        resultDialog.add(resultLabel);
+        resultDialog.add(wordLabel);
+        resultDialog.add(restartButton);
+    }
+
+    private void resetGame() {
         // load new challenge
         wordChallenge = wordDB.loadChallenge();
         incorrectGuesses = 0;
