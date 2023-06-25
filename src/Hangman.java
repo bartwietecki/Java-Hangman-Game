@@ -110,6 +110,74 @@ public class Hangman extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        String command = e.getActionCommand();
+        if(command.equals("Reset")) {
+            restartGame();
+        } else if (command.equals("Quit")) {
+            dispose();
+            return;
+        } else {
+            // letter buttons
 
+            // disable button
+            JButton button = (JButton) e.getSource();
+            button.setEnabled(false);
+
+            // check if the word contains the user's guess
+            if (wordChallenge[1].contains(command)) {
+                // indicate that the user got it right
+                button.setBackground(Color.GREEN);
+
+                // store the hidden word in a char array, so update the hidden text
+                char[] hiddenWord = hiddenWordLabel.getText().toCharArray();
+
+                for (int i = 0; i < wordChallenge[1].length(); i++) {
+                    // update _ to correct letter
+                    if (wordChallenge[1].charAt(i) == command.charAt(0)) {
+                        hiddenWord[i] = command.charAt(0);
+                    }
+                }
+
+                // update hiddenWordLabel
+                hiddenWordLabel.setText(String.valueOf(hiddenWord));
+
+                // the user guessed the word right
+
+            } else {
+                // indicate that the user chose the wrong letter
+                button.setBackground(Color.RED);
+
+                // increase incorrect counter
+                ++incorrectGuesses;
+
+                // update hanman image
+                CustomTools.updateImage(hangmanImage, "resources/" + (incorrectGuesses + 1) + ".png");
+
+                // user failed to guess word right
+            }
+        }
+
+    }
+
+    private void restartGame() {
+        // load new challenge
+        wordChallenge = wordDB.loadChallenge();
+        incorrectGuesses = 0;
+
+        // load starting image
+        CustomTools.updateImage(hangmanImage, CommonConstants.IMAGE_PATH);
+
+        // update category
+        categoryLabel.setText(wordChallenge[0]);
+
+        // update hiddenWord
+        String hiddenWord = CustomTools.hiddenWords(wordChallenge[1]);
+        hiddenWordLabel.setText(hiddenWord);
+
+        // enable all buttons again
+        for (int i = 0; i < letterButtons.length; i++) {
+            letterButtons[i].setEnabled(true);
+            letterButtons[i].setBackground(CommonConstants.PRIMARY_COLOR);
+        }
     }
 }

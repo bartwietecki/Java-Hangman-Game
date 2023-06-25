@@ -1,6 +1,7 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.io.InputStream;
 
 public class CustomTools {
@@ -17,10 +18,21 @@ public class CustomTools {
         return null;
     }
 
+    public static void updateImage(JLabel imageContainer, String resource) {
+        BufferedImage image;
+        try {
+            InputStream inputStream = CustomTools.class.getResourceAsStream(resource);
+            image = ImageIO.read(inputStream);
+            imageContainer.setIcon(new ImageIcon(image));
+        } catch (IOException e) {
+            System.out.println("Error: " + e);
+        }
+    }
+
     public static String hiddenWords(String word) {
         String hiddenWord = "";
-        for(int i = 0 ; i < word.length(); i++) {
-            if(!(word.charAt(i) == ' ')) {
+        for (int i = 0; i < word.length(); i++) {
+            if (!(word.charAt(i) == ' ')) {
                 hiddenWord += "*";
             } else {
                 hiddenWord += " ";

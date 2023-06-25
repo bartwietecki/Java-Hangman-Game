@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8d77b796-3cf5-495d-93ce-c52c97f548b5" name="Changes" comment="Reset button">
+    <list default="true" id="8d77b796-3cf5-495d-93ce-c52c97f548b5" name="Changes" comment="Quit button">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CustomTools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CustomTools.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Hangman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hangman.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -70,7 +71,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1687683437473</updated>
-      <workItem from="1687683438508" duration="5309000" />
+      <workItem from="1687683438508" duration="6232000" />
     </task>
     <task id="LOCAL-00001" summary="JFrame Window">
       <created>1687684928414</created>
@@ -107,7 +108,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687688667669</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Quit button">
+      <created>1687688793111</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1687688793111</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -119,6 +127,7 @@
     <MESSAGE value="Hangman image label and category label" />
     <MESSAGE value="Adding letter buttons" />
     <MESSAGE value="Reset button" />
-    <option name="LAST_COMMIT_MESSAGE" value="Reset button" />
+    <MESSAGE value="Quit button" />
+    <option name="LAST_COMMIT_MESSAGE" value="Quit button" />
   </component>
 </project>
